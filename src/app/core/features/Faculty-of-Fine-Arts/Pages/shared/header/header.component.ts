@@ -22,8 +22,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.menuItems = this.navigationService.getMainMenuItems();
-    this.socialLinks = this.navigationService.getSocialLinks();
-    this.languageOptions = this.navigationService.getLanguageOptions();
+  
   }
 
   toggleMobileMenu() {

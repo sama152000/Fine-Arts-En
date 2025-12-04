@@ -3,6 +3,11 @@
 /* PrimeIcons CSS */
 @import 'primeicons/primeicons.css';
 
+/* Import Fonts and Icons */
+/* @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap'); */
+
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 
 /* ===== FONT DECLARATIONS ===== */
@@ -14,14 +19,9 @@
 }
 
 
+
 /* Faculty of Fine Arts - Luxor University */
 /* General CSS - Design System */
-
-/* Import Fonts and Icons */
-/* @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap'); */
-
-@import url('fortawesome/fontawesome-free/css/all.min.css');
-
 /* CSS Variables - Color System */
 :root {
   /* Faculty Colors */

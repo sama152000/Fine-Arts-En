@@ -8,6 +8,7 @@ import { StatisticsComponent } from "./statistics/statistics.component";
 
 @Component({
   selector: 'app-Home',
+  standalone: true,
   templateUrl: './Home.component.html',
   styleUrls: ['./Home.component.css'],
   imports: [HeroComponent, AboutComponent, DepartmentsComponent, EventsComponent, NewsComponent, StatisticsComponent]
