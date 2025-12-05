@@ -4,7 +4,7 @@ import { DepartmentService } from '../../../Services/department.service';
 import { Department } from '../../../model/department.model';
 
 @Component({
-  selector: 'app-departments',
+  selector: 'app-department',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './departments.component.html',

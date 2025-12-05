@@ -25,11 +25,11 @@ export class NavigationService {
       },
       { 
         label: 'Departments', 
-        url: '/departments',
+        url: '/department-page',
         dropdownItems: this.getDepartmentDropdownItems()
       },
-      { label: 'Sectors', url: '/staff' },
-      { label: 'Units & Centers', url: '/units-centers' },
+      { label: 'Sectors', url: '/sectors' },
+      { label: 'Units & Centers', url: '/units' },
       { label: 'Student Services', url: '/student-services' },
       { label: 'Contact Us', url: '/contact' }
     ];
@@ -39,7 +39,7 @@ export class NavigationService {
     const departments = this.departmentService.getDepartments();
     return departments.map(dept => ({
       label: dept.name,
-      url: `/departments/${dept.id}`,
+      url: `/department-page/${dept.id}`,
       icon: dept.icon
     }));
   }

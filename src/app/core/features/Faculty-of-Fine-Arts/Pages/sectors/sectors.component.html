@@ -1,28 +1,26 @@
 <div class="container-fluid py-4">
- 
-  
   <div class="row">
     <!-- Sidebar -->
     <div class="col-lg-3 col-md-4">
       <div class="departments-sidebar art-card">
         <div class="sidebar-header content-padding">
           <h5 class="text-primary-blue mb-0">
-            <i class="pi pi-building me-2"></i>
-            Faculty Departments
+            <i class="pi pi-sitemap me-2"></i>
+            Faculty Sectors
           </h5>
         </div>
         <div class="sidebar-content">
-          <div *ngFor="let department of departments" 
+          <div *ngFor="let sector of sectors" 
                class="department-item"
-               [class.active]="selectedDepartment?.id === department.id"
-               (click)="selectDepartment(department)">
+               [class.active]="selectedSector?.id === sector.id"
+               (click)="selectSector(sector)">
             <div class="department-info">
               <div class="department-icon">
-                <i [class]="department.icon"></i>
+                <i [class]="sector.icon"></i>
               </div>
               <div class="department-details">
-                <h6 class="department-name">{{ department.name }}</h6>
-                <small class="text-muted">{{ department.studentCount }} Students</small>
+                <h6 class="department-name">{{ sector.name }}</h6>
+                <small class="text-muted">{{ sector.staffMembers.length }} Staff Members</small>
               </div>
             </div>
           </div>
@@ -32,31 +30,31 @@
 
     <!-- Main Content -->
     <div class="col-lg-9 col-md-8">
-      <div class="department-content" *ngIf="selectedDepartment">
+      <div class="department-content" *ngIf="selectedSector">
         
-        <!-- Department Header -->
+        <!-- Sector Header -->
         <div class="department-header art-card mb-4">
           <div class="row align-items-center content-padding">
             <div class="col-md-8">
               <div class="d-flex align-items-center mb-3">
                 <div class="department-icon-large me-3">
-                  <i [class]="selectedDepartment.icon"></i>
+                  <i [class]="selectedSector.icon"></i>
                 </div>
                 <div>
-                  <h2 class="text-primary-blue mb-1">{{ selectedDepartment.name }}</h2>
-                  <p class="text-muted mb-0">Established {{ selectedDepartment.establishedYear }}</p>
+                  <h2 class="text-primary-blue mb-1">{{ selectedSector.name }}</h2>
+                  <p class="text-muted mb-0">Established {{ selectedSector.establishedYear }}</p>
                 </div>
               </div>
             </div>
             <div class="col-md-4 text-md-end">
               <div class="department-stats">
                 <div class="stat-item">
-                  <span class="stat-number">{{ selectedDepartment.studentCount }}</span>
-                  <span class="stat-label">Students</span>
+                  <span class="stat-number">{{ selectedSector.staffMembers.length }}</span>
+                  <span class="stat-label">Staff</span>
                 </div>
                 <div class="stat-item">
-                  <span class="stat-number">{{ selectedDepartment.staffMembers.length }}</span>
-                  <span class="stat-label">Faculty</span>
+                  <span class="stat-number">{{ selectedSector.divisions?.length || 0 }}</span>
+                  <span class="stat-label">Divisions</span>
                 </div>
               </div>
             </div>
@@ -72,7 +70,6 @@
                  (click)="selectTab(tab.id)">
               <i [class]="tab.icon" class="me-2"></i>
               {{ tab.label }}
-              
             </div>
           </div>
         </div>
@@ -81,35 +78,35 @@
         <div class="tab-content art-card">
           
           <!-- Overview Tab -->
-          <div *ngIf="activeTab === 'overview'" class="tab-pane content-padding ">
+          <div *ngIf="activeTab === 'overview'" class="tab-pane content-padding">
             <div class="row">
               <div class="col-md-8">
-                <h4 class="text-primary-blue mb-3">Department Overview</h4>
-                <p class="lead mb-4">{{ selectedDepartment.description }}</p>
+                <h4 class="text-primary-blue mb-3">Sector Overview</h4>
+                <p class="lead mb-4">{{ selectedSector.description }}</p>
                 
-                <h5 class="text-primary-blue mb-3">Academic Programs</h5>
-                <div class="row mb-4">
-                  <div class="col-md-6" *ngFor="let program of selectedDepartment.programsOffered">
+                <h5 class="text-primary-blue mb-3">Services</h5>
+                <div class="row mb-4" *ngIf="selectedSector.services">
+                  <div class="col-md-6" *ngFor="let service of selectedSector.services">
                     <div class="program-card">
-                      <i class="pi pi-graduation-cap text-accent-gold me-2"></i>
-                      <span>{{ program }}</span>
+                      <i class="pi pi-check-circle text-accent-gold me-2"></i>
+                      <span>{{ service }}</span>
                     </div>
                   </div>
                 </div>
 
-                <h5 class="text-primary-blue mb-3" *ngIf="selectedDepartment.divisions?.length">Specializations</h5>
-                <div class="divisions-list mb-4" *ngIf="selectedDepartment.divisions?.length">
-                  <div *ngFor="let division of selectedDepartment.divisions" class="division-item">
+                <h5 class="text-primary-blue mb-3" *ngIf="selectedSector.activities?.length">Key Activities</h5>
+                <div class="divisions-list mb-4" *ngIf="selectedSector.activities?.length">
+                  <div *ngFor="let activity of selectedSector.activities" class="division-item">
                     <i class="pi pi-angle-right text-primary-blue me-2"></i>
-                    {{ division }}
+                    {{ activity }}
                   </div>
                 </div>
               </div>
               
               <div class="col-md-4">
                 <div class="department-image-container">
-                  <img [src]="selectedDepartment.imageUrl" 
-                       [alt]="selectedDepartment.name"
+                  <img [src]="selectedSector.imageUrl" 
+                       [alt]="selectedSector.name"
                        class="img-fluid rounded shadow-custom">
                 </div>
               </div>
@@ -117,14 +114,14 @@
           </div>
 
           <!-- Vision & Mission Tab -->
-          <div *ngIf="activeTab === 'vision-mission'" class="tab-pane content-padding ">
+          <div *ngIf="activeTab === 'vision-mission'" class="tab-pane content-padding">
             <div class="row">
               <div class="col-md-6">
                 <div class="vision-section mb-4">
                   <h4 class="text-primary-blue mb-3">
                     <i class="pi pi-eye me-2"></i>Vision
                   </h4>
-                  <p class="vision-text">{{ selectedDepartment.vision }}</p>
+                  <p class="vision-text">{{ selectedSector.vision }}</p>
                 </div>
               </div>
               <div class="col-md-6">
@@ -132,17 +129,17 @@
                   <h4 class="text-primary-blue mb-3">
                     <i class="pi pi-compass me-2"></i>Mission
                   </h4>
-                  <p class="mission-text">{{ selectedDepartment.mission }}</p>
+                  <p class="mission-text">{{ selectedSector.mission }}</p>
                 </div>
               </div>
             </div>
             
             <div class="objectives-section">
               <h4 class="text-primary-blue mb-3">
-                <i class="pi pi-flag me-2"></i>Department Objectives
+                <i class="pi pi-flag me-2"></i>Sector Objectives
               </h4>
               <div class="objectives-list">
-                <div *ngFor="let objective of selectedDepartment.objectives; let i = index" 
+                <div *ngFor="let objective of selectedSector.objectives; let i = index" 
                      class="objective-item">
                   <div class="objective-number">{{ i + 1 }}</div>
                   <div class="objective-text">{{ objective }}</div>
@@ -151,11 +148,11 @@
             </div>
           </div>
 
-          <!-- Head of Department Tab -->
-          <div *ngIf="activeTab === 'head'" class="tab-pane content-padding ">
+          <!-- Head of Sector Tab -->
+          <div *ngIf="activeTab === 'head'" class="tab-pane content-padding">
             <div class="head-section">
               <h4 class="text-primary-blue mb-4">
-                <i class="pi pi-user me-2"></i>Department Leadership
+                <i class="pi pi-user me-2"></i>Sector Leadership
               </h4>
               
               <div class="head-profile">
@@ -166,35 +163,35 @@
                     </div>
                   </div>
                   <div class="col-md-9">
-                    <h5 class="text-primary-blue mb-2">{{ selectedDepartment.headOfDepartment.name }}</h5>
-                    <p class="text-muted mb-2">{{ selectedDepartment.headOfDepartment.title }}</p>
-                    <p class="mb-2"><strong>Academic Rank:</strong> {{ selectedDepartment.headOfDepartment.academicRank }}</p>
-                    <p class="mb-2"><strong>Specialization:</strong> {{ selectedDepartment.headOfDepartment.specialization }}</p>
-                    <p class="mb-2" *ngIf="selectedDepartment.headOfDepartment.email">
+                    <h5 class="text-primary-blue mb-2">{{ selectedSector.headOfSector.name }}</h5>
+                    <p class="text-muted mb-2">{{ selectedSector.headOfSector.title }}</p>
+                    <p class="mb-2"><strong>Academic Rank:</strong> {{ selectedSector.headOfSector.academicRank }}</p>
+                    <p class="mb-2"><strong>Specialization:</strong> {{ selectedSector.headOfSector.specialization }}</p>
+                    <p class="mb-2" *ngIf="selectedSector.headOfSector.email">
                       <strong>Email:</strong> 
-                      <a [href]="'mailto:' + selectedDepartment.headOfDepartment.email">
-                        {{ selectedDepartment.headOfDepartment.email }}
+                      <a [href]="'mailto:' + selectedSector.headOfSector.email">
+                        {{ selectedSector.headOfSector.email }}
                       </a>
                     </p>
-                    <p class="mb-3" *ngIf="selectedDepartment.headOfDepartment.office">
-                      <strong>Office:</strong> {{ selectedDepartment.headOfDepartment.office }}
+                    <p class="mb-3" *ngIf="selectedSector.headOfSector.office">
+                      <strong>Office:</strong> {{ selectedSector.headOfSector.office }}
                     </p>
                   </div>
                 </div>
                 
-                <div *ngIf="selectedDepartment.headOfDepartment.bio" class="head-bio mt-4">
+                <div *ngIf="selectedSector.headOfSector.bio" class="head-bio mt-4">
                   <h6 class="text-primary-blue mb-2">Biography</h6>
-                  <p>{{ selectedDepartment.headOfDepartment.bio }}</p>
+                  <p>{{ selectedSector.headOfSector.bio }}</p>
                 </div>
               </div>
             </div>
           </div>
 
           <!-- Staff Members Tab -->
-          <div *ngIf="activeTab === 'staff'" class="tab-pane content-padding ">
+          <div *ngIf="activeTab === 'staff'" class="tab-pane content-padding">
             <div class="staff-section">
               <h4 class="text-primary-blue mb-4">
-                <i class="pi pi-users me-2"></i>Faculty Members
+                <i class="pi pi-users me-2"></i>Staff Members
               </h4>
 
               <!-- Staff by Academic Rank -->
@@ -224,7 +221,7 @@
                   <div class="col-md-6" *ngFor="let division of getUniqueDivisions()">
                     <div class="division-summary">
                       <h6 class="text-primary-blue">{{ division }}</h6>
-                      <p class="text-muted">{{ getStaffByDivision(division).length }} Faculty Members</p>
+                      <p class="text-muted">{{ getStaffByDivision(division).length }} Staff Members</p>
                     </div>
                   </div>
                 </div>
@@ -234,11 +231,11 @@
         </div>
       </div>
 
-      <!-- No Department Selected -->
-      <div *ngIf="!selectedDepartment" class="no-selection art-card content-padding text-center">
-        <i class="pi pi-building text-muted" style="font-size: 4rem;"></i>
-        <h4 class="text-muted mt-3">Select a Department</h4>
-        <p class="text-muted">Choose a department from the sidebar to view its details.</p>
+      <!-- No Sector Selected -->
+      <div *ngIf="!selectedSector" class="no-selection art-card content-padding text-center">
+        <i class="pi pi-sitemap text-muted" style="font-size: 4rem;"></i>
+        <h4 class="text-muted mt-3">Select a Sector</h4>
+        <p class="text-muted">Choose a sector from the sidebar to view its details.</p>
       </div>
     </div>
   </div>

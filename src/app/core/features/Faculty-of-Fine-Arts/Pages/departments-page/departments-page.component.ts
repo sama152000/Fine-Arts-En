@@ -1,17 +1,19 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Department, DepartmentTab } from '../../model/department.model';
-import { DepartmentService } from '../../Services/department.service';
+import { ChangeDetectorRef } from '@angular/core';
+import { Department, DepartmentTab } from '../../model/department.page.model';
+import { DepartmentService } from '../../Services/department.page.service';
 
 @Component({
-  selector: 'app-departments',
+  selector: 'app-departments-page',
+  standalone: true,
   imports: [CommonModule],
-  templateUrl: './departments.component.html',
-  styleUrls: ['./departments.component.css'],
+  templateUrl: './departments-page.component.html',
+  styleUrls: ['./departments-page.component.css'],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class DepartmentsComponent implements OnInit {
+export class DepartmentsPageComponent implements OnInit {
   departments: Department[] = [];
   selectedDepartment: Department | null = null;
   tabs: DepartmentTab[] = [];
@@ -68,6 +70,7 @@ export class DepartmentsComponent implements OnInit {
     this.activeTab = 'overview';
     this.updateTabsActiveState();
     // ensure view updates after loading data
+    this.cdr.markForCheck();
 
     // Update URL without triggering navigation
     this.router.navigate(['/departments', department.id], { replaceUrl: true });

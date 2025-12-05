@@ -11,7 +11,7 @@ import { StatisticsComponent } from "./statistics/statistics.component";
   standalone: true,
   templateUrl: './Home.component.html',
   styleUrls: ['./Home.component.css'],
-  imports: [HeroComponent, AboutComponent, DepartmentsComponent, EventsComponent, NewsComponent, StatisticsComponent]
+  imports: [HeroComponent, AboutComponent, EventsComponent, NewsComponent, StatisticsComponent, DepartmentsComponent]
 })
 export class HomeComponent implements OnInit {
 

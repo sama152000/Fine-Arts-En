@@ -1,0 +1,276 @@
+<div class="container-fluid py-4">
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-lg-3 col-md-4">
+      <div class="departments-sidebar art-card">
+        <div class="sidebar-header content-padding">
+          <h5 class="text-primary-blue mb-0">
+            <i class="pi pi-users me-2"></i>
+            Student Services
+          </h5>
+        </div>
+        <div class="sidebar-content">
+          <div *ngFor="let service of studentServices" 
+               class="department-item"
+               [class.active]="selectedService?.id === service.id"
+               (click)="selectService(service)">
+            <div class="department-info">
+              <div class="department-icon">
+                <i [class]="service.icon"></i>
+              </div>
+              <div class="department-details">
+                <h6 class="department-name">{{ service.name }}</h6>
+                <small class="text-muted">{{ service.staffMembers.length }} Staff Members</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="col-lg-9 col-md-8">
+      <div class="department-content" *ngIf="selectedService">
+        
+        <!-- Service Header -->
+        <div class="department-header art-card mb-4">
+          <div class="row align-items-center content-padding">
+            <div class="col-md-8">
+              <div class="d-flex align-items-center mb-3">
+                <div class="department-icon-large me-3">
+                  <i [class]="selectedService.icon"></i>
+                </div>
+                <div>
+                  <h2 class="text-primary-blue mb-1">{{ selectedService.name }}</h2>
+                  <p class="text-muted mb-0">Established {{ selectedService.establishedYear }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 text-md-end">
+              <div class="department-stats">
+                <div class="stat-item">
+                  <span class="stat-number">{{ selectedService.staffMembers.length }}</span>
+                  <span class="stat-label">Staff</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number">{{ selectedService.services?.length || 0 }}</span>
+                  <span class="stat-label">Services</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="department-tabs mb-4">
+          <div class="tabs-container">
+            <div *ngFor="let tab of tabs" 
+                 class="tab-item"
+                 [class.active]="tab.active"
+                 (click)="selectTab(tab.id)">
+              <i [class]="tab.icon" class="me-2"></i>
+              {{ tab.label }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="tab-content art-card">
+          
+          <!-- Overview Tab -->
+          <div *ngIf="activeTab === 'overview'" class="tab-pane content-padding">
+            <div class="row">
+              <div class="col-md-8">
+                <h4 class="text-primary-blue mb-3">Service Overview</h4>
+                <p class="lead mb-4">{{ selectedService.description }}</p>
+                
+                <h5 class="text-primary-blue mb-3">Available Services</h5>
+                <div class="row mb-4" *ngIf="selectedService.services">
+                  <div class="col-md-6" *ngFor="let service of selectedService.services">
+                    <div class="program-card">
+                      <i class="pi pi-check-circle text-accent-gold me-2"></i>
+                      <span>{{ service }}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <h5 class="text-primary-blue mb-3" *ngIf="selectedService.procedures?.length">Service Procedures</h5>
+                <div class="divisions-list mb-4" *ngIf="selectedService.procedures?.length">
+                  <div *ngFor="let procedure of selectedService.procedures; let i = index" class="division-item">
+                    <i class="pi pi-angle-right text-primary-blue me-2"></i>
+                    <strong>Step {{ i + 1 }}:</strong> {{ procedure }}
+                  </div>
+                </div>
+
+                <!-- Service Information -->
+                <div class="service-info mt-4" *ngIf="selectedService.workingHours || selectedService.location">
+                  <div class="row">
+                    <div class="col-md-6" *ngIf="selectedService.workingHours">
+                      <div class="info-card">
+                        <h6 class="text-primary-blue mb-2">
+                          <i class="pi pi-clock me-2"></i>Working Hours
+                        </h6>
+                        <p class="mb-0">{{ selectedService.workingHours }}</p>
+                      </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="selectedService.location">
+                      <div class="info-card">
+                        <h6 class="text-primary-blue mb-2">
+                          <i class="pi pi-map-marker me-2"></i>Location
+                        </h6>
+                        <p class="mb-0">{{ selectedService.location }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-md-4">
+                <div class="department-image-container">
+                  <img [src]="selectedService.imageUrl" 
+                       [alt]="selectedService.name"
+                       class="img-fluid rounded shadow-custom">
+                </div>
+
+                <!-- Requirements Card -->
+                <div class="requirements-card mt-4" *ngIf="selectedService.requirements?.length">
+                  <h6 class="text-primary-blue mb-3">
+                    <i class="pi pi-list me-2"></i>Requirements
+                  </h6>
+                  <ul class="requirements-list">
+                    <li *ngFor="let requirement of selectedService.requirements">
+                      {{ requirement }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Vision & Mission Tab -->
+          <div *ngIf="activeTab === 'vision-mission'" class="tab-pane content-padding">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="vision-section mb-4">
+                  <h4 class="text-primary-blue mb-3">
+                    <i class="pi pi-eye me-2"></i>Vision
+                  </h4>
+                  <p class="vision-text">{{ selectedService.vision }}</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mission-section mb-4">
+                  <h4 class="text-primary-blue mb-3">
+                    <i class="pi pi-compass me-2"></i>Mission
+                  </h4>
+                  <p class="mission-text">{{ selectedService.mission }}</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="objectives-section">
+              <h4 class="text-primary-blue mb-3">
+                <i class="pi pi-flag me-2"></i>Service Objectives
+              </h4>
+              <div class="objectives-list">
+                <div *ngFor="let objective of selectedService.objectives; let i = index" 
+                     class="objective-item">
+                  <div class="objective-number">{{ i + 1 }}</div>
+                  <div class="objective-text">{{ objective }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Head of Service Tab -->
+          <div *ngIf="activeTab === 'head'" class="tab-pane content-padding">
+            <div class="head-section">
+              <h4 class="text-primary-blue mb-4">
+                <i class="pi pi-user me-2"></i>Service Leadership
+              </h4>
+              
+              <div class="head-profile">
+                <div class="row align-items-center">
+                  <div class="col-md-3">
+                    <div class="head-image-placeholder">
+                      <i class="pi pi-user"></i>
+                    </div>
+                  </div>
+                  <div class="col-md-9">
+                    <h5 class="text-primary-blue mb-2">{{ selectedService.headOfService.name }}</h5>
+                    <p class="text-muted mb-2">{{ selectedService.headOfService.title }}</p>
+                    <p class="mb-2"><strong>Position:</strong> {{ selectedService.headOfService.position }}</p>
+                    <p class="mb-2"><strong>Specialization:</strong> {{ selectedService.headOfService.specialization }}</p>
+                    <p class="mb-2" *ngIf="selectedService.headOfService.email">
+                      <strong>Email:</strong> 
+                      <a [href]="'mailto:' + selectedService.headOfService.email">
+                        {{ selectedService.headOfService.email }}
+                      </a>
+                    </p>
+                    <p class="mb-3" *ngIf="selectedService.headOfService.office">
+                      <strong>Office:</strong> {{ selectedService.headOfService.office }}
+                    </p>
+                  </div>
+                </div>
+                
+                <div *ngIf="selectedService.headOfService.bio" class="head-bio mt-4">
+                  <h6 class="text-primary-blue mb-2">Biography</h6>
+                  <p>{{ selectedService.headOfService.bio }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Staff Members Tab -->
+          <div *ngIf="activeTab === 'staff'" class="tab-pane content-padding">
+            <div class="staff-section">
+              <h4 class="text-primary-blue mb-4">
+                <i class="pi pi-users me-2"></i>Staff Members
+              </h4>
+
+              <!-- Staff by Position -->
+              <div class="staff-by-rank">
+                <div *ngFor="let position of getUniquePositions()" class="rank-section mb-4">
+                  <h5 class="rank-title text-secondary mb-3">{{ position }}s</h5>
+                  <div class="row">
+                    <div class="col-md-6 col-lg-4 mb-3" *ngFor="let staff of getStaffByPosition(position)">
+                      <div class="staff-card">
+                        <div class="staff-avatar">
+                          <i class="pi pi-user"></i>
+                        </div>
+                        <div class="staff-info">
+                          <h6 class="staff-name">{{ staff.name }}</h6>
+                          <p class="staff-specialization">{{ staff.specialization }}</p>
+                          <small class="staff-division" *ngIf="staff.division">{{ staff.division }}</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Staff Summary -->
+              <div class="staff-summary mt-4">
+                <div class="row">
+                  <div class="col-md-6" *ngFor="let division of getUniqueDivisions()">
+                    <div class="division-summary">
+                      <h6 class="text-primary-blue">{{ division }}</h6>
+                      <p class="text-muted">{{ getStaffByDivision(division).length }} Staff Members</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- No Service Selected -->
+      <div *ngIf="!selectedService" class="no-selection art-card content-padding text-center">
+        <i class="pi pi-users text-muted" style="font-size: 4rem;"></i>
+        <h4 class="text-muted mt-3">Select a Service</h4>
+        <p class="text-muted">Choose a student service from the sidebar to view its details.</p>
+      </div>
+    </div>
+  </div>
+</div>
