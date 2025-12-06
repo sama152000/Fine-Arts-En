@@ -76,9 +76,9 @@
 
         <!-- Tab Content -->
         <div class="tab-content art-card">
-          
-          <!-- Overview Tab -->
-          <div *ngIf="activeTab === 'overview'" class="tab-pane content-padding">
+          <div [ngSwitch]="activeTab">
+            <!-- Overview Tab -->
+            <div *ngSwitchCase="'overview'" class="tab-pane content-padding">
             <div class="row">
               <div class="col-md-8">
                 <h4 class="text-primary-blue mb-3">Service Overview</h4>
@@ -147,8 +147,8 @@
             </div>
           </div>
 
-          <!-- Vision & Mission Tab -->
-          <div *ngIf="activeTab === 'vision-mission'" class="tab-pane content-padding">
+            <!-- Vision & Mission Tab -->
+            <div *ngSwitchCase="'vision-mission'" class="tab-pane content-padding">
             <div class="row">
               <div class="col-md-6">
                 <div class="vision-section mb-4">
@@ -182,8 +182,8 @@
             </div>
           </div>
 
-          <!-- Head of Service Tab -->
-          <div *ngIf="activeTab === 'head'" class="tab-pane content-padding">
+            <!-- Head of Service Tab -->
+            <div *ngSwitchCase="'head'" class="tab-pane content-padding">
             <div class="head-section">
               <h4 class="text-primary-blue mb-4">
                 <i class="pi pi-user me-2"></i>Service Leadership
@@ -221,8 +221,8 @@
             </div>
           </div>
 
-          <!-- Staff Members Tab -->
-          <div *ngIf="activeTab === 'staff'" class="tab-pane content-padding">
+            <!-- Staff Members Tab -->
+            <div *ngSwitchCase="'staff'" class="tab-pane content-padding">
             <div class="staff-section">
               <h4 class="text-primary-blue mb-4">
                 <i class="pi pi-users me-2"></i>Staff Members

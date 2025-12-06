@@ -6,6 +6,7 @@ import { DepartmentService } from '../../Services/department.service';
 
 @Component({
   selector: 'app-departments',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './departments.component.html',
   styleUrls: ['./departments.component.css'],
@@ -77,6 +78,15 @@ export class DepartmentsComponent implements OnInit {
     this.activeTab = tabId;
     this.updateTabsActiveState();
     this.cdr.markForCheck();
+    console.log('selectTab called with:', tabId, 'activeTab is now:', this.activeTab);
+  }
+
+  isTabActive(tabId: string): boolean {
+    const result = this.activeTab === tabId;
+    if (result) {
+      console.log('Tab is active:', tabId, 'activeTab:', this.activeTab);
+    }
+    return result;
   }
 
   private updateTabsActiveState() {

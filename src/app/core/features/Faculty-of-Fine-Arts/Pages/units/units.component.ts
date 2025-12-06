@@ -14,13 +14,13 @@ import { Unit, UnitTab } from '../../model/unit.model';
 export class UnitsComponent implements OnInit {
   units: Unit[] = [];
   selectedUnit: Unit | null = null;
-  activeTab = 'overview';
+  activeTab = 'staff';
   
   tabs: UnitTab[] = [
     { id: 'overview', label: 'Overview', icon: 'pi pi-info-circle', active: true },
     { id: 'vision-mission', label: 'Vision & Mission', icon: 'pi pi-eye', active: false },
     { id: 'head', label: 'Head of Unit', icon: 'pi pi-user', active: false },
-    { id: 'staff', label: 'Staff Members', icon: 'pi pi-users', active: false }
+    // { id: 'staff', label: 'Staff Members', icon: 'pi pi-users', active: true }
   ];
 
   constructor(
@@ -31,14 +31,24 @@ export class UnitsComponent implements OnInit {
 
   ngOnInit() {
     this.units = this.unitsService.getUnits();
-    
-    // Check for unit ID in route params
+    // set a sensible default immediately so the template has data
+    if (this.units.length > 0) {
+      this.selectedUnit = this.units[0];
+    }
+
+    // Check for unit ID in route params and update selection when it changes
+    const snapshotId = this.route.snapshot.paramMap.get('id');
+    if (snapshotId) {
+      const unitId = parseInt(snapshotId, 10);
+      this.selectedUnit = this.unitsService.getUnitById(unitId) ?? this.selectedUnit;
+    }
+
+    this.tabs.forEach(tab => tab.active = (tab.id === this.activeTab));
+
     this.route.params.subscribe(params => {
       if (params['id']) {
         const unitId = parseInt(params['id']);
-this.selectedUnit = this.unitsService.getUnitById(unitId) ?? null;     
- } else if (this.units.length > 0) {
-        this.selectedUnit = this.units[0];
+        this.selectedUnit = this.unitsService.getUnitById(unitId) ?? this.selectedUnit;
       }
     });
   }

@@ -25,7 +25,7 @@ export class NavigationService {
       },
       { 
         label: 'Departments', 
-        url: '/department-page',
+        url: '/departments',
         dropdownItems: this.getDepartmentDropdownItems()
       },
       { label: 'Sectors', url: '/sectors' },
@@ -39,7 +39,7 @@ export class NavigationService {
     const departments = this.departmentService.getDepartments();
     return departments.map(dept => ({
       label: dept.name,
-      url: `/department-page/${dept.id}`,
+      url: `/departments/${dept.id}`,
       icon: dept.icon
     }));
   }

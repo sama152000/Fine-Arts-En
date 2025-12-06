@@ -1,6 +1,7 @@
-# TODO: Install Bootstrap and PrimeNG in Angular Project
+# TODO: Fix Tab Content Data Binding in Departments Component
 
-- [x] Install Bootstrap via npm
-- [x] Install PrimeNG, PrimeIcons, and Angular Animations via npm
-- [x] Update styles.css to import Bootstrap CSS and PrimeNG theme/styles
-- [ ] Update app.config.ts to provide animations for PrimeNG
+## Tasks
+- [ ] Update tab content section in departments.component.html to use [ngSwitch]="activeTab" on the container div
+- [ ] Change each tab pane div from *ngIf="activeTab === 'tabId'" to *ngSwitchCase="'tabId'"
+- [ ] Test tab switching to ensure content updates correctly
+- [ ] Verify data binding for department properties within each tab pane
