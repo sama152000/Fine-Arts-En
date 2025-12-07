@@ -15,7 +15,7 @@
 
     <!-- News Grid -->
     <div class="row">
-      <div class="col-lg-6 col-xl-3 mb-4" *ngFor="let news of newsItems; let i = index">
+      <div class="col-12 col-md-6 col-lg-6 col-xl-3 mb-4" *ngFor="let news of newsItems; let i = index">
         <article class="news-card art-card h-100 fade-in" 
                  [style.animation-delay]="(i * 0.1) + 's'"
                  [class.featured]="news.featured">
@@ -79,7 +79,7 @@
     <!-- View All News Button -->
     <div class="row mt-4">
       <div class="col-12 text-center">
-        <a href="/news" class="btn btn-primary-custom btn-lg">
+        <a href="/news-list" class="btn btn-primary-custom btn-lg">
           <i class="pi pi-list me-2"></i>
           View All News
         </a>

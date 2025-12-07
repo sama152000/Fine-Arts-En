@@ -17,18 +17,18 @@ export class FooterService {
             { label: 'Home', url: '/' },
             { label: 'About the Faculty', url: '/about' },
             { label: 'Academic Departments', url: '/departments' },
-            { label: 'Faculty Members', url: '/faculty' },
+            { label: 'News', url: '/news-list' },
 
             { label: 'Contact Us', url: '/contact' }
           ]
         },
         {
-          title: 'Student Services',
+          title: 'Quick Links',
           links: [
-            { label: 'Student Results', url: '/results' },
-            { label: 'Class Schedules', url: '/schedules' },
-            { label: 'Research Projects', url: '/research' },
-            { label: 'Digital Library', url: '/library' },
+            { label: 'Services ', url: '/student-services' },
+            { label: 'News', url: '/news-list' },
+            { label:  'Units & Centers', url: '/units' },
+            { label: 'Academic Departments', url: '/departments' },
           
           ]
         }
