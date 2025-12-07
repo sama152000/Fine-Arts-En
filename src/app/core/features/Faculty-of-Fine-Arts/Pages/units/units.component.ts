@@ -14,7 +14,7 @@ import { Unit, UnitTab } from '../../model/unit.model';
 export class UnitsComponent implements OnInit {
   units: Unit[] = [];
   selectedUnit: Unit | null = null;
-  activeTab = 'staff';
+  activeTab = 'overview';
   
   tabs: UnitTab[] = [
     { id: 'overview', label: 'Overview', icon: 'pi pi-info-circle', active: true },

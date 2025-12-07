@@ -46,10 +46,10 @@
               </div>
             </div>
             <div class="col-md-4 text-md-end">
-              <div class="established-info">
+              <!-- <div class="established-info">
                 <span class="established-year" *ngIf="facultyInfo">{{ facultyInfo.establishedYear }}</span>
                 <span class="established-label">Established</span>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -58,9 +58,9 @@
         <div class="section-content art-card">
           
           <!-- Regular Content -->
-          <div *ngIf="!isAdministrativeStructureSection()" class="content-padding fade-in">
+          <div *ngIf="!isAdministrativeStructureSection()" class="content-padding ">
             <div class="row" *ngIf="selectedSection.imageUrl">
-              <div class="col-md-8">
+              <div class="col-md-12">
                 <div class="content-text">
                   <div *ngFor="let paragraph of formatContent(selectedSection.content)" 
                        class="content-paragraph">
@@ -68,13 +68,13 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-4">
+              <!-- <div class="col-md-4">
                 <div class="section-image-container">
                   <img [src]="selectedSection.imageUrl" 
                        [alt]="selectedSection.title"
                        class="img-fluid rounded shadow-custom">
                 </div>
-              </div>
+              </div> -->
             </div>
             
             <div *ngIf="!selectedSection.imageUrl" class="content-text">

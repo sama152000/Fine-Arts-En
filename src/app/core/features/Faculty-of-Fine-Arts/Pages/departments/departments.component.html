@@ -50,14 +50,14 @@
             </div>
             <div class="col-md-4 text-md-end">
               <div class="department-stats">
-                <div class="stat-item">
+                <!-- <div class="stat-item">
                   <span class="stat-number">{{ selectedDepartment.studentCount }}</span>
                   <span class="stat-label">Students</span>
                 </div>
                 <div class="stat-item">
                   <span class="stat-number">{{ selectedDepartment.staffMembers.length }}</span>
                   <span class="stat-label">Faculty</span>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -83,7 +83,7 @@
             <!-- Overview Tab -->
             <div *ngSwitchCase="'overview'" class="tab-pane content-padding ">
               <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
                   <h4 class="text-primary-blue mb-3">Department Overview</h4>
                   <p class="lead mb-4">{{ selectedDepartment.description }}</p>
 
@@ -106,13 +106,13 @@
                   </div>
                 </div>
 
-                <div class="col-md-4">
+                <!-- <div class="col-md-4">
                   <div class="department-image-container">
                     <img [src]="selectedDepartment.imageUrl"
                          [alt]="selectedDepartment.name"
                          class="img-fluid rounded shadow-custom">
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
 

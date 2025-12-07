@@ -81,7 +81,7 @@
 
                 <!-- Event Description -->
                 <p class="event-description mb-3">
-                  {{ event.description }}
+                  {{ event.summary }}
                 </p>
 
                 <!-- Action Buttons -->
@@ -93,10 +93,10 @@
                       <i class="pi pi-user-plus me-2"></i>
                       Register Now
                     </a>
-                    <button class="btn btn-secondary-custom mb-2">
+                    <a [href]="event.readMoreUrl" class="btn btn-secondary-custom mb-2">
                       <i class="pi pi-info-circle me-2"></i>
                       View Details
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -109,7 +109,7 @@
     <!-- View All Events -->
     <div class="row mt-4">
       <div class="col-12 text-center">
-        <a href="/events" class="btn btn-primary-custom btn-lg">
+        <a routerLink="/news-list" class="btn btn-primary-custom btn-lg">
           <i class="pi pi-calendar me-2"></i>
           View All Events
         </a>

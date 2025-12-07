@@ -3,10 +3,12 @@ import { HomeComponent } from './core/features/Faculty-of-Fine-Arts/Pages/Home/H
 import { FacultyOfFineArtsComponent } from './core/features/Faculty-of-Fine-Arts/Faculty-of-Fine-Arts.component';
 import { DepartmentsComponent } from './core/features/Faculty-of-Fine-Arts/Pages/departments/departments.component';
 import { AboutComponent } from './core/features/Faculty-of-Fine-Arts/Pages/about/about.component';
-import { DepartmentsPageComponent} from './core/features/Faculty-of-Fine-Arts/Pages/departments-page/departments-page.component';
 import { SectorsComponent } from './core/features/Faculty-of-Fine-Arts/Pages/sectors/sectors.component';
 import { UnitsComponent } from './core/features/Faculty-of-Fine-Arts/Pages/units/units.component';
 import { StudentServicesComponent } from './core/features/Faculty-of-Fine-Arts/Pages/student-services/student-services.component';
+import { NewsListComponent } from './core/features/Faculty-of-Fine-Arts/Pages/news-list/news-list.component';
+import { NewsDetailsComponent } from './core/features/Faculty-of-Fine-Arts/Pages/news-list/news-details/news-details.component';
+import { ContactComponent } from './core/features/Faculty-of-Fine-Arts/Pages/contact/contact.component';
 export const routes: Routes = [
 
 
@@ -26,6 +28,9 @@ export const routes: Routes = [
   { path: 'units/:id', component: UnitsComponent },
   { path: 'student-services', component: StudentServicesComponent },
   { path: 'student-services/:id', component: StudentServicesComponent },
+   { path: 'news-list', component: NewsListComponent },
+      { path: 'news-details/:id', component: NewsDetailsComponent },
+      { path: 'contact', component: ContactComponent }
     
     ]}
 ];

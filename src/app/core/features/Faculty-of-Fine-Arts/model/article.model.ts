@@ -1,18 +1,13 @@
-export interface EventItem {
+export interface ArticleItem {
   id: number;
   title: string;
   summary: string;
   fullContent: string;
   imageUrl: string;
   publishDate: Date;
-  eventDate: Date;
-  startTime: string;
-  endTime?: string;
-  location: string;
   author?: string;
-  category: 'event';
+  category: 'article';
   readMoreUrl: string;
-  registrationUrl?: string;
   featured?: boolean;
   relatedItems?: number[];
 }

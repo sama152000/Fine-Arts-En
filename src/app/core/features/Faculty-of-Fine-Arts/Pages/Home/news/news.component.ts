@@ -16,7 +16,7 @@ export class NewsComponent implements OnInit {
   constructor(private newsService: NewsService) {}
 
   ngOnInit() {
-    this.newsItems = this.newsService.getLatestNews();
+    this.newsItems = this.newsService.getAllNews().slice(0, 4);
   }
 
   getCategoryClass(category: string): string {

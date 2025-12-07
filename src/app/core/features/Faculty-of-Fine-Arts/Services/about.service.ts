@@ -39,17 +39,17 @@ export class AboutService {
     
     strategicPlan: `The Faculty of Fine Arts Strategic Plan 2023-2028 outlines our commitment to excellence in artistic education, research, and community engagement. Our strategic initiatives focus on:
 
-    **Academic Excellence**: Continuously updating curricula to reflect contemporary artistic practices while preserving traditional techniques and cultural heritage.
+    Academic Excellence: Continuously updating curricula to reflect contemporary artistic practices while preserving traditional techniques and cultural heritage.
 
-    **Research & Innovation**: Promoting interdisciplinary research that explores the intersection of art, technology, and society, with particular emphasis on digital arts and cultural preservation.
+    Research & Innovation: Promoting interdisciplinary research that explores the intersection of art, technology, and society, with particular emphasis on digital arts and cultural preservation.
 
-    **Community Engagement**: Strengthening our ties with local and international cultural institutions, museums, and art organizations to provide students with real-world experience and professional networking opportunities.
+    Community Engagement: Strengthening our ties with local and international cultural institutions, museums, and art organizations to provide students with real-world experience and professional networking opportunities.
 
-    **International Collaboration**: Expanding exchange programs and partnerships with renowned art institutions worldwide to enhance global perspectives and cross-cultural understanding.
+    International Collaboration: Expanding exchange programs and partnerships with renowned art institutions worldwide to enhance global perspectives and cross-cultural understanding.
 
-    **Infrastructure Development**: Investing in modern facilities, digital laboratories, and sustainable practices that support innovative teaching and learning methodologies.
+    Infrastructure Development: Investing in modern facilities, digital laboratories, and sustainable practices that support innovative teaching and learning methodologies.
 
-    **Cultural Preservation**: Leading efforts to document, preserve, and interpret Egypt's rich artistic heritage for future generations through digital archives and educational programs.`,
+    Cultural Preservation: Leading efforts to document, preserve, and interpret Egypt's rich artistic heritage for future generations through digital archives and educational programs.`,
     
     administrativeStructure: [
       {

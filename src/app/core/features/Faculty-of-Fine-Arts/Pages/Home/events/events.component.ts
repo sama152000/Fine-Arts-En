@@ -1,22 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EventService } from '../../../Services/event.service';
-import { Event } from '../../../model/event.model';
+import { RouterLink } from '@angular/router';
+import { EventsService } from '../../../Services/event.service';
+import { EventItem } from '../../../model/event.model';
 
 @Component({
   selector: 'app-events',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent implements OnInit {
-  events: Event[] = [];
+  events: EventItem[] = [];
 
-  constructor(private eventService: EventService) {}
+  constructor(private eventService: EventsService) {}
 
   ngOnInit() {
-    this.events = this.eventService.getUpcomingEvents().slice(0, 2);
+    this.events = this.eventService.getAllEvents().slice(0, 4);
   }
 
   getCategoryClass(category: string): string {

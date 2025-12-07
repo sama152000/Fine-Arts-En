@@ -30,6 +30,8 @@ export class NavigationService {
       },
       { label: 'Sectors', url: '/sectors' },
       { label: 'Units & Centers', url: '/units' },
+            { label: 'News', url: '/news-list' },
+
       { label: 'Student Services', url: '/student-services' },
       { label: 'Contact Us', url: '/contact' }
     ];
